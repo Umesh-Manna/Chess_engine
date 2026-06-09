@@ -6,9 +6,20 @@
 #include <string>
 #include <vector>
 #include <cctype>
+#include <array>
 
+#define NB_SQ 64  //No. of square
+#define NB_CASTLE 2 //No. of castle
+#define NB_COLOR 2 // No. of color
 
+enum class Castle {
+    king_side, 
+    queen_side
+};
 
+enum class Color {
+    white, black
+};
 
 
 class Move {
@@ -16,8 +27,30 @@ class Move {
     int to_squuare; 
 };
 
-
 class ChessBoard {
+private:
+    Color turn;
+    std::string en_passant;
+    //chess board for visual representation on the terminal
+    std::array <char, NB_SQ> board;
+    std::array <std::array<bool, NB_CASTLE>, NB_COLOR> castle_rights;
+
+
+public: 
+    ChessBoard() {
+        for (int i = 0; i < NB_SQ; i++) board[i] = '.';
+        
+        //setting everything up as default in general
+        for (int i = 0; i < NB_COLOR; i++) {
+            for (int j = 0; j < NB_CASTLE; j++) {
+                castle_rights[i][j] = false;
+            }
+        }
+    }
+
+
+
+
 public:
     void loadFromFEN(const std::string& fen) {
         //todo : parse the fen string
