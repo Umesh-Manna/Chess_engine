@@ -30,6 +30,8 @@ class Move {
 class ChessBoard {
 private:
     Color turn;
+    Color w = Color::white; 
+    Color b = Color::black;
     std::string en_passant;
     //chess board for visual representation on the terminal
     std::array <char, NB_SQ> board;
@@ -38,9 +40,10 @@ private:
 
 public: 
     ChessBoard() {
+//setting every board to empty by default 
         for (int i = 0; i < NB_SQ; i++) board[i] = '.';
         
-        //setting everything up as default in general
+//setting everything up as default in general
         for (int i = 0; i < NB_COLOR; i++) {
             for (int j = 0; j < NB_CASTLE; j++) {
                 castle_rights[i][j] = false;
@@ -48,17 +51,51 @@ public:
         }
     }
 
-
-
-
 public:
     void loadFromFEN(const std::string& fen) {
-        //todo : parse the fen string
+        const size_t size = fen.size();
+        size_t iter = 0; 
+        int index = 0; 
+
+        //parses the first pieces part of the FEN string
+        for ( ; (iter < size) && (fen[iter] != ' '); iter++) {
+            if (fen[iter] == '/') {
+                continue;
+            }
+            
+            //check if the char is number, convert it to char type
+            if (isdigit(fen[iter])) {
+                index += (fen[iter] - '0');
+            }
+            else {
+                board[index] = fen[index];
+                ++index;
+            }
+        }
+
+        
+
+        turn = fen[iter +1] == 'w' ? Color::white : Color::black;
+
+        for (iter += 3; (iter < size) and (fen[iter] != ' '); iter++){
+            if (fen[iter] == 'k')
+                castle_rights[Color::black][Castle::king_side] = true;
+            else if (fen[iter] == 'K')
+                castle_rights[Color::white][Castle::king_side] = true;
+            else if (fen[iter] == 'q') 
+                castle_rights[Color::white][Castle::queen_side] = true;
+        }
+
+        en_passant = fen.substr(iter + 1, 3);
     }
 
 public:
     void printBoard() {
-        //todo : Print 8*8 board using terminal using letters
+        for (int i = 0; i < NB_SQ; i++)
+        {
+            if (i % 8 == 0) std::cout << '\n';
+            std::cout << board[i] << ' ';
+        }
 
     }
 
