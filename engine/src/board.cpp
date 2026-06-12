@@ -32,6 +32,9 @@ private:
     Color turn;
     Color w = Color::white; 
     Color b = Color::black;
+    Castle kS = Castle::king_side;
+    Castle qS = Castle::queen_side;
+
     std::string en_passant;
     //chess board for visual representation on the terminal
     std::array <char, NB_SQ> board;
@@ -75,15 +78,18 @@ public:
 
         
 
-        turn = fen[iter +1] == 'w' ? Color::white : Color::black;
+        turn = fen[iter +1] == 'w' ? w : b;
 
         for (iter += 3; (iter < size) and (fen[iter] != ' '); iter++){
             if (fen[iter] == 'k')
-                castle_rights[Color::black][Castle::king_side] = true;
+                castle_rights[static_cast<bool>(b)][static_cast<bool>(kS)] = true;
             else if (fen[iter] == 'K')
-                castle_rights[Color::white][Castle::king_side] = true;
+                castle_rights[static_cast<bool>(w)][static_cast<bool>(kS)] = true;
             else if (fen[iter] == 'q') 
-                castle_rights[Color::white][Castle::queen_side] = true;
+                castle_rights[static_cast<bool>(b)][static_cast<bool>(qS)] = true;
+            else if (fen[iter] == 'Q') {
+                castle_rights[static_cast<bool>(w)][static_cast<bool>(qS)] = true;
+            }
         }
 
         en_passant = fen.substr(iter + 1, 3);
