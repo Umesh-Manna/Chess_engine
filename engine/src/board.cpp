@@ -1,6 +1,4 @@
-//chess engine day one
-//no point in thinking too much, let's just begin
-//orginally this was in main.cpp, but i think this file is better suited for board.cpp
+
 
 #include <iostream>
 #include <string>
@@ -8,26 +6,31 @@
 #include <cctype>
 #include <array>
 
-#define NB_SQ 64  //No. of square
-#define NB_CASTLE 2 //No. of castle
-#define NB_COLOR 2 // No. of color
-
-enum class Castle {
-    king_side, 
-    queen_side
-};
-
-enum class Color {
-    white, black
-};
-
-
 class Move {
     int from_square;
-    int to_squuare; 
+    int to_square;
 };
 
 class ChessBoard {
+public:
+    char board[8][8];
+    bool whiteToMove;
+
+    ChessBoard {
+        resetBoard();
+    }
+
+//resetting the value to empty by default
+public:
+    void resetBoard() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                board[i][j] = ;
+            }
+        }
+    }
+    
+
 public:
     void loadFromFEN(const std::string& fen) {
         
@@ -35,15 +38,21 @@ public:
 
 public:
     void printBoard() {
-
+        for (int i = 0; i < 8; i++) {
+            std::cout << 8 - i << " ";
+            for (int j = 0; j < 8; j++) {
+                std::cout << board[i][j] << " "; 
+            }
+        }
+        std::cout << "a b c d e f g h";
     }
 
 public: 
-    std::vector<Move> generatePseudoLegalMoves() {
-        std::vector<Move> moves; 
-        //todo: loop through the sqares, find pieces and calculate where they go....
-        return moves;        
-    }
+    // std::vector<Move> generatePseudoLegalMoves() {
+    //     std::vector<Move> moves; 
+    //     //todo: loop through the sqares, find pieces and calculate where they go....
+    //     return moves;        
+    // }
 
 };
 
