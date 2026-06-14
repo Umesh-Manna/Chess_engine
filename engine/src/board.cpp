@@ -16,7 +16,9 @@ public:
     char board[8][8];
     bool whiteToMove;
 
-    ChessBoard {
+    //as soon as the class is called, a empty board will be created
+public:
+    ChessBoard() {
         resetBoard();
     }
 
@@ -25,7 +27,7 @@ public:
     void resetBoard() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                board[i][j] = ;
+                board[i][j] = '.';
             }
         }
     }
@@ -33,6 +35,34 @@ public:
 
 public:
     void loadFromFEN(const std::string& fen) {
+        
+        //first part of the fen
+        int idx = 0; //pointer that keeps track of 'fen' string
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                //if '/'
+                if (fen[idx] == '/') {
+                    break;
+                }
+
+                //if number or char
+                if (isdigit(fen[idx])) {
+
+                }
+                else {
+                    board[i][j] = fen[idx];
+                }
+            }
+        }
+
+        for (int i = 0; i < 8; i++) {
+            std::cout << 8 - i << " ";
+            for (int j = 0; j < 8; j++) {
+                std::cout << board[i][j] << " ";
+            }
+            std::cout << std::endl;
+        }
+        std::cout << "  a b c d e f g h" << std::endl;
         
     }
 
@@ -44,7 +74,7 @@ public:
                 std::cout << board[i][j] << " "; 
             }
         }
-        std::cout << "a b c d e f g h";
+        std::cout << "  a b c d e f g h" << std::endl;
     }
 
 public: 
@@ -60,6 +90,6 @@ int main() {
     ChessBoard board;
     //this is the starting position of the board..
     board.loadFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-    board.printBoard();
+    //board.printBoard();
     return 0 ;
 }
