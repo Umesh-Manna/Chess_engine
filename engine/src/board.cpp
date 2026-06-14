@@ -5,6 +5,17 @@
 #include <vector>
 #include <cctype>
 #include <array>
+#include <algorithm>
+
+enum class Color {
+    white = 0,
+    black = 1
+};
+
+enum class Castle {
+    king_side = 0,
+    queen_side = 1
+};
 
 class Move {
     int from_square;
@@ -14,11 +25,14 @@ class Move {
 class ChessBoard {
 public:
     char board[8][8];
-    bool whiteToMove;
+    bool whiteToMove; 
+    bool castle_rights[2][2];
 
     //as soon as the class is called, a empty board will be created
 public:
-    ChessBoard() {
+    ChessBoard() 
+    : castle_rights{}         //setting all value of castle-rights to false at start
+    {
         resetBoard();
     }
 
@@ -36,7 +50,11 @@ public:
 public:
     void loadFromFEN(const std::string& fen) {
         
+        //--------//
         //first part of the fen
+        //For simply printing the pieces in the board
+        //--------//
+
         int idx = 0; //pointer that keeps track of 'fen' string
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -55,17 +73,49 @@ public:
                     idx++;
                 }
             }
+        }        
+
+        //--------//
+        //Rest part of the FEN string
+        //To keep track of: Which piece to move
+        //--------//
+
+        idx++; 
+        whiteToMove = fen[idx] == 'w' ? true : false;
+        idx += 2;
+
+        //--------//
+        //Rest part of the FEN string
+        //To keep track of: castling rights
+        //--------//
+
+
+        while (fen[idx] != ' ') {
+            if (fen[idx] == 'K') {
+                castle_rights[static_cast<int>(Color::white)][static_cast<int>(Castle::king_side)] = true;
+
+            }
+            else if (fen[idx] == 'k') {
+                castle_rights[static_cast<int>(Color::black)][static_cast<int>(Castle::king_side)] = true;
+            }
+            else if (fen[idx] == 'Q') {
+                castle_rights[static_cast<int>(Color::white)][static_cast<int>(Castle::queen_side)] = true;
+            }
+            else if(fen[idx] == 'q') {
+                castle_rights[static_cast<int>(Color::black)][static_cast<int>(Castle::queen_side)] = true;
+            }
+            else {   
+                break;
+            }
+
+            idx++;
         }
 
-        for (int i = 0; i < 8; i++) {
-            std::cout << 8 - i << " ";
-            for (int j = 0; j < 8; j++) {
-                std::cout << board[i][j] << " ";
-            }
-            std::cout << std::endl;
-        }
-        std::cout << "  a b c d e f g h" << std::endl;
-        
+        std::cout << fen[idx] << std::endl;
+    
+
+
+
     }
 
 public:
@@ -75,6 +125,7 @@ public:
             for (int j = 0; j < 8; j++) {
                 std::cout << board[i][j] << " "; 
             }
+            std::cout << std::endl;
         }
         std::cout << "  a b c d e f g h" << std::endl;
     }
