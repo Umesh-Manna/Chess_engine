@@ -42,15 +42,17 @@ public:
             for (int j = 0; j < 8; j++) {
                 //if '/'
                 if (fen[idx] == '/') {
-                    break;
+                    idx++;
                 }
 
                 //if number or char
                 if (isdigit(fen[idx])) {
-
+                    j += fen[idx];
+                    idx++;
                 }
                 else {
                     board[i][j] = fen[idx];
+                    idx++;
                 }
             }
         }
