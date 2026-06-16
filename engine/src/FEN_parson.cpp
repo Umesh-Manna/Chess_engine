@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -22,12 +20,13 @@ class Move {
     int to_square;
 };
 
+
 class ChessBoard {
 public:
     char board[8][8];               //first part of the FEN string showing the position of the pieces
     bool whiteToMove;               //keeps track of the turn to play
     bool castle_rights[2][2];       //keeps track of the castelling rights
-    std::string epSquare;           //for en passant
+    std::string epTracker;           //temporary variable created for tracking en passant
 
 
     //as soon as the class is called, a empty board will be created
@@ -58,6 +57,7 @@ public:
         //--------//
 
         int idx = 0; //pointer that keeps track of 'fen' string
+        //board.loadFromFEN("rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 1");
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 //if '/'
@@ -154,7 +154,8 @@ public:
 int main() {
     ChessBoard board;
     //this is the starting position of the board..
-    board.loadFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-    //board.printBoard();
+    //board.loadFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+    board.loadFromFEN("rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 1");
+    board.printBoard();
     return 0 ;
 }
