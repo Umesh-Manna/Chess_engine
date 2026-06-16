@@ -24,9 +24,11 @@ class Move {
 
 class ChessBoard {
 public:
-    char board[8][8];
-    bool whiteToMove; 
-    bool castle_rights[2][2];
+    char board[8][8];               //first part of the FEN string showing the position of the pieces
+    bool whiteToMove;               //keeps track of the turn to play
+    bool castle_rights[2][2];       //keeps track of the castelling rights
+    std::string epSquare;           //for en passant
+
 
     //as soon as the class is called, a empty board will be created
 public:
@@ -51,7 +53,7 @@ public:
     void loadFromFEN(const std::string& fen) {
         
         //--------//
-        //first part of the fen
+        //1st part of the fen
         //For simply printing the pieces in the board
         //--------//
 
@@ -76,7 +78,7 @@ public:
         }        
 
         //--------//
-        //Rest part of the FEN string
+        //2nd part of the FEN string
         //To keep track of: Which piece to move
         //--------//
 
@@ -85,7 +87,7 @@ public:
         idx += 2;
 
         //--------//
-        //Rest part of the FEN string
+        //3rd part of FEN string
         //To keep track of: castling rights
         //--------//
 
@@ -111,7 +113,17 @@ public:
             idx++;
         }
 
-        std::cout << fen[idx] << std::endl;
+
+        //--------//
+        //4th part of FEN string
+        //To keep track of: En Passant
+        //--------//
+
+
+        //board.loadFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+
+         
+
     
 
 
