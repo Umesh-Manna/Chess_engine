@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 
+#include "board.hpp"
+
 enum class Pieces {
 
 };
@@ -26,7 +28,7 @@ struct Square {
 //     int promotionPiece = 0;         //0 if none, enum value of Q, R, B, N
 // };
 
-class move_generator {
+class Move_generator {
 
 public:
     std::vector<std::vector<int>> getKnightMoves(Square current_pos) {
@@ -42,15 +44,36 @@ public:
             int next_r = current_pos.row + drow[i];
             int next_c = current_pos.col + dcol[i];
 
-            //checking for out of bound
-            if ((next_r < 8 && next_c < 8) /*&& (board[current_pos.row][current_pos.col])*/) {        //valid possition
+            //checking for out of bound, and if the space is empty
+            if ((next_r >= 0 && next_r < 8) && (next_c >= 0 && next_c < 8) /*&& (global::board[current_pos.row][current_pos.col] == '.')*/) {        //valid possition
                 valid_moves.push_back({next_r, next_c});
             }
         }
 
         return valid_moves;
     }
+
+
+    
 };
+
+int main() {
+    std::vector<std::vector<int>> valid_moves;
+
+    Move_generator kn; 
+    Square currentPos;
+    currentPos.row = 3;
+    currentPos.col = 0;
+    valid_moves = kn.getKnightMoves(currentPos);
+
+    for (auto& r : valid_moves) {
+        for (auto& c : r) {
+            std::cout << c << " ";
+        }
+        std::cout << std::endl;
+    }
+
+}
 
 
 

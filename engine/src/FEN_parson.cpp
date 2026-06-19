@@ -58,7 +58,6 @@ public:
         //--------//
 
         int idx = 0; //pointer that keeps track of 'fen' string
-        //board.loadFromFEN("rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 1");
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 //if '/'
@@ -68,7 +67,7 @@ public:
 
                 //if the current value of FEN string is a number or a char(piece)      
                 if (isdigit(fen[idx])) {
-                    j += fen[idx] - '0';
+                    j += (fen[idx] - '0') -1;
                     idx++;
                 }
                 else {
@@ -141,7 +140,8 @@ int main() {
     ChessBoard board;
     //this is the starting position of the board..
     //board.loadFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); 
-    board.loadFromFEN("rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 1");
+
+    board.loadFromFEN("8/8/8/8/3N4/8/8/8 b - - 0 1"); 
     board.printBoard();
     return 0 ;
 }
