@@ -5,6 +5,8 @@
 #include <array>
 #include <algorithm>
 
+#include "board.hpp"
+
 enum class Color {
     white = 0,
     black = 1
@@ -22,8 +24,7 @@ class Move {
 
 
 class ChessBoard {
-public:
-    char board[8][8];               //first part of the FEN string showing the position of the pieces
+public:           //first part of the FEN string showing the position of the pieces
     bool whiteToMove;               //keeps track of the turn to play
     bool castle_rights[2][2];       //keeps track of the castelling rights
     std::string epTracker;           //temporary variable created for tracking en passant
@@ -42,7 +43,7 @@ public:
     void resetBoard() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                board[i][j] = '.';
+                global::board[i][j] = '.';
             }
         }
     }
@@ -65,13 +66,14 @@ public:
                     idx++;
                 }
 
-                //if number or char
+                //if the current value of FEN string is a number or a char(piece)
+                //board.loadFromFEN("rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 1");
                 if (isdigit(fen[idx])) {
                     j += fen[idx];
                     idx++;
                 }
                 else {
-                    board[i][j] = fen[idx];
+                    global::board[i][j] = fen[idx];
                     idx++;
                 }
             }
@@ -135,7 +137,7 @@ public:
         for (int i = 0; i < 8; i++) {
             std::cout << 8 - i << " ";
             for (int j = 0; j < 8; j++) {
-                std::cout << board[i][j] << " "; 
+                std::cout << global::board[i][j] << " "; 
             }
             std::cout << std::endl;
         }
@@ -154,7 +156,7 @@ public:
 int main() {
     ChessBoard board;
     //this is the starting position of the board..
-    //board.loadFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+    //board.loadFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); 
     board.loadFromFEN("rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 1");
     board.printBoard();
     return 0 ;
