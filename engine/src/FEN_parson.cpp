@@ -66,10 +66,9 @@ public:
                     idx++;
                 }
 
-                //if the current value of FEN string is a number or a char(piece)
-                //board.loadFromFEN("rnbqkbnr/pp2pppp/2p5/3pP3/3P4/8/PPP2PPP/RNBQKBNR b KQkq - 0 1");
+                //if the current value of FEN string is a number or a char(piece)      
                 if (isdigit(fen[idx])) {
-                    j += fen[idx];
+                    j += fen[idx] - '0';
                     idx++;
                 }
                 else {
@@ -114,21 +113,6 @@ public:
 
             idx++;
         }
-
-
-        //--------//
-        //4th part of FEN string
-        //To keep track of: En Passant
-        //--------//
-
-
-        //board.loadFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-
-         
-
-    
-
-
 
     }
 
