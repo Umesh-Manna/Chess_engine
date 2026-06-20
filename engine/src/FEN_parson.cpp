@@ -24,10 +24,11 @@ class Move {
 
 
 class ChessBoard {
-public:           //first part of the FEN string showing the position of the pieces
-    bool whiteToMove;               //keeps track of the turn to play
+public:    
+    //char board[i][j]              //first part of the FEN string showing the position of the pieces
+    //bool whiteToMove;             //keeps track of the turn to play
     bool castle_rights[2][2];       //keeps track of the castelling rights
-    std::string epTracker;           //temporary variable created for tracking en passant
+    std::string epTracker;          //temporary variable created for tracking en passant
 
 
     //as soon as the class is called, a empty board will be created
@@ -83,7 +84,7 @@ public:
         //--------//
 
         idx++; 
-        whiteToMove = fen[idx] == 'w' ? true : false;
+        global::whiteToMove = fen[idx] == 'w' ? true : false;
         idx += 2;
 
         //--------//
@@ -141,7 +142,7 @@ int main() {
     //this is the starting position of the board..
     //board.loadFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); 
 
-    board.loadFromFEN("8/8/8/8/3N4/8/8/8 b - - 0 1"); 
+    board.loadFromFEN("8/8/8/8/N7/8/8/8 b - - 0 1"); 
     board.printBoard();
     return 0 ;
 }

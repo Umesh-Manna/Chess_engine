@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cctype>
 
 #include "board.hpp"
 
@@ -46,7 +47,37 @@ public:
 
             //checking for out of bound, and if the space is empty
             if ((next_r >= 0 && next_r < 8) && (next_c >= 0 && next_c < 8) /*&& (global::board[current_pos.row][current_pos.col] == '.')*/) {        //valid possition
-                valid_moves.push_back({next_r, next_c});
+                char target_piece = global::board[next_r][next_c];
+
+                //std::cout << "is this reaching over here" << std::endl;
+                //std::cout << target_piece << std::endl;
+
+                for (int i = 0; i < 8; i++) {
+                    std::cout << 8 - i << " ";
+                    for (int j = 0; j < 8; j++) {
+                        std::cout << global::board[i][j] << " "; 
+                    }
+                    std::cout << std::endl;
+                }
+                std::cout << "  a b c d e f g h" << std::endl;
+
+                if (target_piece == '.') {
+                    valid_moves.push_back({next_r, next_c});
+                }
+                else {
+                    //there is a piece here, check if there is enemy or not
+                    //if white's turn, then pieces would be upper case
+                    //if black's turn, then pieces would be lower case
+
+                    bool isEnemy = ((global::whiteToMove && isupper(target_piece)) || (!global::whiteToMove && islower(target_piece)));
+                        
+                    if (isEnemy) {
+                        valid_moves.push_back({next_r, next_c});
+                    }
+                    //else do nothing
+                }
+                
+                
             }
         }
 
