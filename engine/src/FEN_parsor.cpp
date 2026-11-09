@@ -144,5 +144,5 @@ int main() {
 
     board.loadFromFEN("8/8/8/8/N7/8/8/8 b - - 0 1"); 
     board.printBoard();
-    return 0 ;
+    return 0 ;  
 }
