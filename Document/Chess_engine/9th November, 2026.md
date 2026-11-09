@@ -4,6 +4,7 @@
 	- learning how to represent chess board and pieces. 
 	- there are different ways to representing board. So choosing and documenting the right one for now based on advantages and trade offs. 
 
+
 3. What I implemented
 
 	- Feature 1  
@@ -12,7 +13,7 @@
     
 
 3. Problems encountered
-
+	- How often should i be pushing commits in the github when developing?? Maybe i tend to do much??
 
 4. How I solved them
 

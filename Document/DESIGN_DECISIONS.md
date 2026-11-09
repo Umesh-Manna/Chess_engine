@@ -1,2 +1,0 @@
-# Design Decision 1
-

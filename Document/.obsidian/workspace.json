@@ -188,9 +188,12 @@
       "bases:Create new base": false
     }
   },
-  "active": "f29e093679f089cf",
+  "active": "4cc5b48895b41e54",
   "lastOpenFiles": [
-    "Chess_engine/Template.md",
-    "Chess_engine/9th November, 2026.md"
+    "DESIGN_DECISIONS/Board Representation.md",
+    "Chess_engine/9th November, 2026.md",
+    "DESIGN_DECISIONS",
+    "DESIGN_DECISIONS.md",
+    "Chess_engine/Template.md"
   ]
 }
