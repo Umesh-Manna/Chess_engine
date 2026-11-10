@@ -62,6 +62,13 @@
 
 
 
-#####
+## Informal
 
-1. hpp and cpp file
+1. created array for board representation
+2. now, going to write the code for pieces
+3. using enum to enumerate pieces to simple interger values
+4. here are the few functions that i have to work on
+	1. initialize board
+	2. print the board
+	-> board waale operation in the <board.cpp> file
+	

@@ -1,26 +1,34 @@
 //Board definitions
 
-#pragma once
-#include <vector>
+#ifndef BOARD_H
+#define BOARD_H
 
-class ChessBoard
+#pragma once
+#include <array>
+
+#include "Piece.h"
+
+class Board
 {
 private:
-    std::vector<std::vector<int>> board;
+    std::array<std::array<int, 8>, 8> board;
+    
 public:
-    ChessBoard() 
-        : board(8, std::vector<int> (8)) {};
-    void resetBoard();
-    void loadFromFEN(const std::string& fen);
+    //constructor
+    Board();
     
+    //initializing starting chess position
+    void initialize();
 
+    //get piece at a perticular square
+    Piece getPiece(int row, int col);
 
+    //place a piece at a perticular square
+    void setPiece(int row, int col, Piece piece);
 
-    inline static char board[8][8];
-    inline static bool whiteToMove;
+    //move a piece from one square to another
+    void movePiece(int startRow, int startCol, int endRow, int endCol);
+
+    //display board at the terminal
+    void print() const;
 };
-
-class ChessBoard {
-private: 
-    
-};  
