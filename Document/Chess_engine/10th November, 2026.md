@@ -71,4 +71,10 @@
 	1. initialize board
 	2. print the board
 	-> board waale operation in the <board.cpp> file
-	
+5. implement <board.h> file
+	1. learning 
+	#ifndef BOARD_H
+	#define BOARD_H
+	#endif
+6. now working on <Piece.h> file
+	1. learned the purpose behind using 'struct' 

@@ -32,3 +32,5 @@ public:
     //display board at the terminal
     void print() const;
 };
+
+#endif
