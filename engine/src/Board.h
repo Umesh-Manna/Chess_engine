@@ -1,12 +1,12 @@
-#pragma once
+//Board definitions
 
+#pragma once
 #include <vector>
 
 class ChessBoard
 {
 private:
     std::vector<std::vector<int>> board;
-
 public:
     ChessBoard() 
         : board(8, std::vector<int> (8)) {};
