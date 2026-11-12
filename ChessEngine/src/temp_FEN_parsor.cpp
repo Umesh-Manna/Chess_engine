@@ -5,7 +5,7 @@
 #include <array>
 #include <algorithm>
 
-#include "board.hpp"
+#include "board.h"
 
 enum class Color {
     white = 0,

@@ -1,8 +1,5 @@
 //Board definitions
 
-#ifndef BOARD_H
-#define BOARD_H
-
 #pragma once
 #include <array>
 
@@ -18,7 +15,7 @@ public:
     Board();
     
     //initializing starting chess position
-    void initialize();
+    void initializeBoard();
 
     //get piece at a perticular square
     Piece getPiece(int row, int col);
@@ -30,7 +27,5 @@ public:
     void movePiece(int startRow, int startCol, int endRow, int endCol);
 
     //display board at the terminal
-    void print() const;
+    void printBoard() const;
 };
-
-#endif

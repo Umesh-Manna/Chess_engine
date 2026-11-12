@@ -78,3 +78,4 @@
 	#endif
 6. now working on <Piece.h> file
 	1. learned the purpose behind using 'struct' 
+7. I am worrying that i am getting way to dependent on chatgpt this way. It is giving me the perfect code from the start but i am not making mistakes and learning much from it this way

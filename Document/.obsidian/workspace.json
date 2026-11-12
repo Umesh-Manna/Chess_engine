@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Chess_engine/10th November, 2026.md",
+                "file": "Chess_engine/12th November, 2026.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "10th November, 2026"
+              "title": "12th November, 2026"
             }
           }
         ]
@@ -190,8 +190,9 @@
   },
   "active": "4cc5b48895b41e54",
   "lastOpenFiles": [
-    "Chess_engine/9th November, 2026.md",
     "Chess_engine/10th November, 2026.md",
+    "Chess_engine/12th November, 2026.md",
+    "Chess_engine/9th November, 2026.md",
     "DESIGN_DECISIONS/Board Representation.md",
     "ALGORITHMS.md",
     "BENCHMARK.md",
